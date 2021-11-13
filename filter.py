@@ -20,24 +20,17 @@ def do_mosaic(arr, m_h, m_w, step):
             brightness = find_av_brightness(i, j, arr, m_h, m_w, step)
             arr[i: i + m_h, j: j + m_w, :] = brightness
 
-inp_im = np.array(Image.open(satisfy_content[0] + ".jpg"))
-
-inp_im_names = input('Введите название изображение '
-                     'Ввод выглядит как (например: img2,res): ') \
+inp_im_names = input('Enter the names of the source image (jpg) and the '
+                     'result separated by comma (for example: img2,res): ') \
     .split(',')
+inp_sizes = input('Enter the height and width of the mosaic element '
+                  'separated by comma (for example: 10,10): ')
+num_grad = int(input('Enter the number of gradations(for example: 6): '))
 
-
-inp_sizes = input('Введите ширину и высоту мозайки (например: 100,100): ')#мозайка на ручном управление
-
-
-num_grad = int(input('Enter the number of gradations(for example: 6): '))#шаги серого ручное управление
-#градация серого и мазайка ручное управление через матрицу
-
+inp_im = np.array(Image.open(inp_im_names[0] + ".jpg"))
 
 e_h, e_w = map(int, inp_sizes.split(','))
 do_mosaic(inp_im, e_h, e_w, find_step(num_grad))
 
 res = Image.fromarray(inp_im)
-
-
 res.save(inp_im_names[1] + ".jpg")
