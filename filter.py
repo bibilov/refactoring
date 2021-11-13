@@ -1,6 +1,6 @@
+import numpy as np
 from PIL import Image
-#переолнение numpy
-# ручной ввод изображения!
+
 
 def find_step(n):
     return int(255 / (n - 1) - 1 if 255 % (n - 1) == 0 else 255 / (n - 1))
@@ -19,6 +19,7 @@ def do_mosaic(arr, m_h, m_w, step):
         for j in range(0, len(arr[1]), m_w):
             brightness = find_av_brightness(i, j, arr, m_h, m_w, step)
             arr[i: i + m_h, j: j + m_w, :] = brightness
+
 
 inp_im_names = input('Enter the names of the source image (jpg) and the '
                      'result separated by comma (for example: img2,res): ') \
