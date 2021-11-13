@@ -20,6 +20,7 @@ def do_mosaic(arr, m_h, m_w, step):
             brightness = find_av_brightness(i, j, arr, m_h, m_w, step)
             arr[i: i + m_h, j: j + m_w, :] = brightness
 
+inp_im = np.array(Image.open(satisfy_content[0] + ".jpg"))
 
 inp_im_names = input('Введите название изображение '
                      'Ввод выглядит как (например: img2,res): ') \
